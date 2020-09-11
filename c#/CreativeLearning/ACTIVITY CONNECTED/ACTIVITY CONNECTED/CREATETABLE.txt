@@ -1,0 +1,38 @@
+﻿CREATE TABLE STUDENT(
+					 student_num INTEGER PRIMARY KEY, 
+					 school_name TEXT,
+					 grade TEXT,
+					 number TEXT,
+					 gender TEXT,
+					 student_name TEXT NOT NULL,
+
+					 UNIQUE(school_name, grade, number, student_name)
+);
+
+
+CREATE TABLE GAME(
+					 game_num INTEGER PRIMARY KEY AUTOINCREMENT,
+					 game_name TEXT
+);
+
+CREATE TABLE PARTICIPATE(
+					 student_num INTEGER,
+					 game_num INTEGER,
+					 participate_num INTEGER,
+					 record TEXT,
+					 
+					 PRIMARY KEY (student_num, game_num),
+					 FOREIGN KEY (student_num) REFERENCES STUDENT(student_num),
+					 FOREIGN KEY (game_num) REFERENCES GAME(game_num)
+);
+
+CREATE TABLE BUZZER(
+					 game_num INTEGER,
+					 buzzer_id INTEGER,
+					 buzzer_content TEXT,
+					 buzzer_color TEXT,
+					 buzzer_time TEXT,
+
+					 PRIMARY KEY (game_num, buzzer_id, buzzer_time),
+					 FOREIGN KEY (game_num) REFERENCES GAME(game_num)
+);
